@@ -2,47 +2,32 @@
 <html>
   <head>
     <title>Remi Adriaensen - Photography</title>
-    <style>
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 20px;
-        max-width: 65%;
-        margin: 0 auto;
-      }
-      .wide {
-        grid-column: span 2;
-      }
-      .gallery img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-      }
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
   </head>
   <body>
     <h1>Remi Adriaensen</h1>
     <div class="gallery">
-      <img src="images/image (29).jpg">
-      <img src="images/image (30).jpg">
-      <img src="images/image (27).jpg" class="wide">
-      <img src="images/image (28).jpg">
+      <img src="images/image (29).jpg" class="gallery-image">
+      <img src="images/image (30).jpg" >
+      <img src="images/image (27).jpg"  class="wide">
+      <img src="images/image (28).jpg" >
 
-      <img src="/images/image (21).jpg">
-      <img src="/images/image (26).jpg" class="wide">
+      <img src="/images/image (21).jpg" >
+      <img src="/images/image (26).jpg"  class="wide">
       <!--<img src="/images/image (1).jpg" class="wide">-->
-      <img src="/images/image (5).jpg">
-      <img src="/images/image (10).jpg">
-      <img src="/images/image (18).jpg" class="wide">
-      <img src="/images/image (14).jpg">
-      <img src="/images/image (6).jpg">
-      <img src="/images/image (19).jpg" class="wide">
-      <img src="/images/image (9).jpg">
-      <img src="/images/image (7).jpg">
+      <img src="/images/image (5).jpg" >
+      <img src="/images/image (10).jpg" >
+      <img src="/images/image (18).jpg"  class="wide">
+      <img src="/images/image (14).jpg" >
+      <img src="/images/image (6).jpg" >
+      <img src="/images/image (19).jpg"  class="wide">
+      <img src="/images/image (9).jpg" >
+      <img src="/images/image (7).jpg" >
       <!--<img src="/images/image (8).jpg">-->
-      <img src="/images/image (17).jpg" class="wide">
-      <img src="/images/image (20).jpg">
-      <img src="/images/image (2).jpg">
+      <img src="/images/image (17).jpg"  class="wide">
+      <img src="/images/image (20).jpg" >
+      <img src="/images/image (2).jpg" >
       <!--<img src="/images/image (4).jpg">-->
       <!--<img src="/images/image (3).jpg" class="wide">-->
 
@@ -50,13 +35,20 @@
       <!--<img src="/images/image (12).jpg">-->
       <!--<img src="/images/image (13).jpg" class="wide">-->
       <!--<img src="/images/image (15).jpg">-->
-      <img src="/images/image (16).jpg" class="wide">
+      <img src="/images/image (16).jpg"  class="wide">
 
 
       <!--<img src="/images/image (22).jpg" class="wide">-->
-      <img src="/images/image (23).jpg" class="wide">
+      <img src="/images/image (23).jpg"  class="wide">
       <!--<img src="/images/image (24).jpg" class="wide">-->
       <!--<img src="/images/image (25).jpg" class="wide">-->
+    </div>
+    <!-- The Modal -->
+    <div id="modal" class="modal">
+      <!-- The Close Button -->
+      <span id="modal-close" class="close">&times;</span>
+      <!-- Modal Content (The Image) -->
+      <img class="modal-content" id="modal-content">
     </div>
   </body>
 </html>
