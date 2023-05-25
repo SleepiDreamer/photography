@@ -12,7 +12,6 @@ for (var i = 0; i < images.length; i++) {
 
     // Create a new image element inside the modal
     var modalImg = document.createElement("img");
-    console.log(this);
     modalImg.src = this.src.replace("/preview/", "/modal/");
     modal.appendChild(modalImg);
 

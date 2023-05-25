@@ -25,8 +25,13 @@ for file in filelist:
     height = int(img.shape[0] * scale)
     dim = (width, height)
     modal = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-    width = int(img.shape[1] * 0.25)
-    height = int(img.shape[0] * 0.25)
+    
+    if width < 1000:
+        scale = 0.7
+    else:
+        scale = 0.25
+    width = int(img.shape[1] * scale)
+    height = int(img.shape[0] * scale)
     dim = (width, height)
     preview = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
     #compress the image so it does not exceed 2000kb in size
