@@ -1,9 +1,4 @@
-window.addEventListener("load", function() {
-    var photos = document.querySelectorAll(".photo");
-    for (var i = 0; i < photos.length; i++) {
-      photos[i].style.opacity = "1";
-    }
-  });
+
 
 // Get all the images on the page
 var images = document.querySelectorAll("img");
@@ -17,7 +12,8 @@ for (var i = 0; i < images.length; i++) {
 
     // Create a new image element inside the modal
     var modalImg = document.createElement("img");
-    modalImg.src = this.src;
+    console.log(this);
+    modalImg.src = this.src.replace("/preview/", "/modal/");
     modal.appendChild(modalImg);
 
     // Add the modal to the page
@@ -44,3 +40,10 @@ for (var i = 0; i < images.length; i++) {
   var img = new Image();
   img.src = images[i].src;
 }
+
+window.addEventListener("load", function() {
+  var photos = document.querySelectorAll(".photo");
+  for (var i = 0; i < photos.length; i++) {
+    photos[i].style.opacity = "1";
+  }
+});
