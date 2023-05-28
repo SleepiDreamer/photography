@@ -1,7 +1,7 @@
 
 
 // Get all the images on the page
-var images = document.querySelectorAll("#photo-gallery img");
+var images = document.querySelectorAll("img");
 
 // Loop through each image and add a click event listener
 for (var i = 0; i < images.length; i++) {
@@ -34,10 +34,25 @@ for (var i = 0; i < images.length; i++) {
 }
 
 // Preload images
-var images = document.querySelectorAll(".photo-gallery img");
-for (var i = 0; i < images.length; i++) {
-  var img = new Image();
-  img.src = images[i].src;
+var previewImages = document.querySelectorAll("img");
+var modalImageUrls = [];
+
+for (var i = 0; i < previewImages.length; i++) {
+  var previewSrc = previewImages[i].getAttribute("src");
+  var modalSrc = previewSrc.replace("preview/", "modal/");
+  modalImageUrls.push(modalSrc);
+}
+
+const preloadImage = src => 
+new Promise((resolve, reject) => {
+  const image = new Image()
+  image.onload = resolve
+  image.onerror = reject
+  image.src = src
+})
+
+for (var i = 0; i < modalImageUrls.length; i++) {
+  preloadImage(modalImageUrls[i]);
 }
 
 window.addEventListener("load", function() {
@@ -46,24 +61,3 @@ window.addEventListener("load", function() {
     photos[i].style.opacity = "1";
   }
 });
-
-// Select an existing HTML element to add the images to
-var container = document.getElementById("image-container");
-
-fetch("/modal/")
-  .then(response => response.text())
-  .then(data => {
-    var parser = new DOMParser();
-    var html = parser.parseFromString(data, "text/html");
-    var images = html.querySelectorAll("#photo-gallery img");
-
-    console.log(images);
-
-    // Loop through each image and create an img element with the src attribute set to the image URL
-    for (var i = 0; i < images.length; i++) {
-      var img = document.createElement("img");
-      img.src = images[i].src;
-      img.style.display = "none";
-      document.body.appendChild(img);
-    }
-  });
