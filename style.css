@@ -23,10 +23,12 @@ body {
   transition: opacity 0.2s ease-in-out;
   backdrop-filter: blur(5px);
   z-index: 9999; /* Set a high z-index value */
+  cursor: pointer;
 }
 
 .modal.show {
   opacity: 1;
+  backdrop-filter: blur(500px);
 }
 
 .modal img {
@@ -75,6 +77,10 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
+  }
+
+  .photo:hover {
+    cursor: pointer;
   }
 
   @media(max-width: 768px){
