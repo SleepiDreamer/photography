@@ -47,19 +47,18 @@ window.addEventListener("load", function() {
   }
 });
 
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/modal/");
-xhr.onload = function() {
-  var parser = new DOMParser();
-  var html = parser.parseFromString(xhr.responseText, "text/html");
-  var images = html.querySelectorAll("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.gif']");
+fetch("/modal/")
+  .then(response => response.text())
+  .then(data => {
+    var parser = new DOMParser();
+    var html = parser.parseFromString(data, "text/html");
+    var images = html.querySelectorAll("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.gif']");
 
-  // Loop through each image and create an img element with the src attribute set to the image URL
-  for (var i = 0; i < images.length; i++) {
-    var img = document.createElement("img");
-    img.src = images[i].href;
-    img.style.display = "none";
-    document.body.appendChild(img);
-  }
-};
-xhr.send();
+    // Loop through each image and create an img element with the src attribute set to the image URL
+    for (var i = 0; i < images.length; i++) {
+      var img = document.createElement("img");
+      img.src = images[i].href;
+      img.style.display = "none";
+      document.body.appendChild(img);
+    }
+  });
