@@ -38,6 +38,12 @@ body {
   object-fit: contain;
   transform: scale(0.9);
   transition: transform 0.15s ease-in-out;
+  user-drag: none;
+  -webkit-user-drag: none; /* For Safari */
+  user-select: none;
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For Internet Explorer/Edge */
 }
 
 .modal.show img {
