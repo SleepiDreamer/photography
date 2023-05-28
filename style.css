@@ -20,9 +20,8 @@ body {
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  backdrop-filter: blur(5px);
-  z-index: 9999; /* Set a high z-index value */
+  transition: opacity 0.15s ease-in-out;
+  z-index: 9999;
   cursor: pointer;
 }
 
@@ -71,12 +70,16 @@ body {
     opacity: 0;
     transition: opacity 0.15s ease-in-out;
   }
+
+  .photo:hover {
+    cursor: pointer;
+  }
   
   .photo img {
     width: 100%;
     max-width: 100%;
     height: auto;
-    border-radius: 5px;
+    border-radius: 10px;
   }
 
   .photo:hover {

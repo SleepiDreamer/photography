@@ -1,7 +1,7 @@
 
 
 // Get all the images on the page
-var images = document.querySelectorAll("img");
+var images = document.querySelectorAll("#photo-gallery img");
 
 // Loop through each image and add a click event listener
 for (var i = 0; i < images.length; i++) {
@@ -47,19 +47,23 @@ window.addEventListener("load", function() {
   }
 });
 
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/modal/");
-xhr.onload = function() {
-  var parser = new DOMParser();
-  var html = parser.parseFromString(xhr.responseText, "text/html");
-  var images = html.querySelectorAll("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.gif']");
+// Select an existing HTML element to add the images to
+var container = document.getElementById("image-container");
 
-  // Loop through each image and create an img element with the src attribute set to the image URL
-  for (var i = 0; i < images.length; i++) {
-    var img = document.createElement("img");
-    img.src = images[i].href;
-    img.style.display = "none";
-    document.body.appendChild(img);
-  }
-};
-xhr.send();
+fetch("/modal/")
+  .then(response => response.text())
+  .then(data => {
+    var parser = new DOMParser();
+    var html = parser.parseFromString(data, "text/html");
+    var images = html.querySelectorAll("#photo-gallery img");
+
+    console.log(images);
+
+    // Loop through each image and create an img element with the src attribute set to the image URL
+    for (var i = 0; i < images.length; i++) {
+      var img = document.createElement("img");
+      img.src = images[i].src;
+      img.style.display = "none";
+      document.body.appendChild(img);
+    }
+  });
