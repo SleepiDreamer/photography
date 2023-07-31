@@ -7,7 +7,7 @@ function layoutImages(callback){
   var columncount = 3; // or any other number of columns you want to display
   if (screen.width <= 767) {
     columncount = 1; // set number of columns to 1 for mobile devices
-    verticalGap = 15
+    verticalGap = 15;
   }
   var fixedwidth = containerWidth / columncount + horizontalGap;
   columns = [];
@@ -22,8 +22,8 @@ function layoutImages(callback){
             x = index*fixedwidth; // calculate horizontal position of current image based on column it belongs
 
       columns[index] += image.height + verticalGap; //calculate new height of column
-      $(image).css({left:x, top:min}).delay(i*1).animate({opacity:1},100); // assign new position to image and show it
-      $(image).css({left:x, top:min}).delay(i*1).animate({opacity:1},100, function() {
+      $(image).css({left:x, top:min}).delay(0).animate({opacity:1},100); // assign new position to image and show it
+      $(image).css({left:x, top:min}).delay(0).animate({opacity:1},100, function() {
         // call the callback function after the animation is complete
         if (i === imagelist.length - 1) {
           callback();
@@ -49,7 +49,6 @@ $(window).on('load', function(){
   layoutImages(function() {
     // hide the loading screen when the images have finished loading and the layout is complete
     $('#loading-screen').hide();
-    console.log("yes");
   });
   $(window).resize(debounce(layoutImages, 100));
 });
@@ -140,3 +139,43 @@ filterButtons.forEach(button => {
     layoutImages();
   });
 });
+
+
+
+
+if (screen.width <= 767) {
+  $(document).ready(function() {
+    var $window = $(window);
+    var $images = $('#gallery img');
+    var windowHeight = $window.height();
+    var windowWidth = $window.width();
+
+    $window.on('scroll', function() {
+      var scrollTop = $window.scrollTop();
+      var center = scrollTop + windowHeight / 2;
+
+      $images.each(function() {
+        var $image = $(this);
+        var imageTop = $image.offset().top;
+        var imageHeight = $image.height();
+        var distance = Math.abs(center - (imageTop + imageHeight / 2));
+        var maxDistance = windowHeight * 1.5;
+        var scale = ((3 - (distance / maxDistance)) / 3) + 0.1;
+        var opacity = 1 - (distance / maxDistance) + 0.25;
+
+        if (scale < 0.1) {
+          scale = 0.1;
+        }
+        if (scale > 1.0) {
+          scale = 1.0;
+        }
+        if (opacity < 0.8) {
+          opacity = 0.8;
+        }
+
+        $image.css('transform', 'scale(' + scale + ')');
+        $image.css('opacity', opacity);
+      });
+    });
+  });
+}
