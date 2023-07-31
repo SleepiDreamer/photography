@@ -1,9 +1,49 @@
-var grid = document.querySelector('.photo-gallery');
-var msnry = new Masonry( grid, {
-  itemSelector: '.photo',
-  columnWidth: '.photo',
-  percentPosition: true
+function layoutImages(){
+  gallery = $('#gallery'), // cache a reference to our container
+  imagelist = $('#gallery img:visible'); // cache a reference to our image list
+  var horizontalGap = 0.01 * screen.width;
+  var verticalGap = horizontalGap;
+  var containerWidth = gallery.width();
+  var columncount = 3; // or any other number of columns you want to display
+  var fixedwidth = containerWidth / columncount + horizontalGap;
+  columns = [];
+
+  for (var i =0;i<columncount;i++){ // initialize columns (0 height for each)
+      columns.push(0);
+  }
+
+  imagelist.each(function(i,image){
+        var min = Math.min.apply(null, columns), // find height of shortest column
+            index = columns.indexOf(min), // find column number with the min height
+            x = index*fixedwidth; // calculate horizontal position of current image based on column it belongs
+
+      columns[index] += image.height + verticalGap; //calculate new height of column (+1 for 1px vertical margin)
+      $(image).css({left:x, top:min}).delay(i*200).animate({opacity:1},100); // assign new position to image and show it
+  });
+}
+
+function debounce(func, wait) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      timeout = null;
+      func.apply(context, args);
+    }, wait);
+  };
+}
+
+$(window).on('load', function(){
+  layoutImages();
+  $(window).resize(debounce(layoutImages, 100));
 });
+
+
+
+
+
+
 
 
 
@@ -74,18 +114,18 @@ window.addEventListener("load", function() {
 
 
 const filterButtons = document.querySelectorAll('.filter-button');
-const photos = document.querySelectorAll('.photo');
+const photos = document.querySelectorAll('#gallery img');
 
 filterButtons.forEach(button => {
   button.addEventListener('click', () => {
     const filter = button.dataset.filter;
     photos.forEach(photo => {
-      const img = photo.querySelector('img')
-      if (filter == 'all' || img.classList.contains(filter)) {
-        photo.style.display = 'block';
+      if (filter == 'all' || photo.classList.contains(filter)) {
+        photo.style.display = 'inline-block';
       } else {
         photo.style.display = 'none';
       }
     });
+    layoutImages();
   });
 });
