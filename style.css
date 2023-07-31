@@ -73,7 +73,7 @@ body::-webkit-scrollbar-button {
   transform: scale(1);
 }
 
-* {
+  * {
     margin: 0;
     padding: 0;
   }
@@ -83,56 +83,42 @@ body::-webkit-scrollbar-button {
     width: 90%;
     margin: auto;
     padding: 40px 0;
-  }
+  } 
+*
 
-  .title {
-    margin-bottom: 2rem;
-  }
 
-  .photo-gallery {
-    display: flex;
-    gap: 20px;
-  }
+.photo-gallery {
+  margin: 0 auto;
+}
 
-  .column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+.photo {
+  margin-bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  position: relative;
+}
 
-  .photo {
-    opacity: 0;
-    transition: opacity 0.15s ease-in-out;
-  }
+.photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  user-drag: none;
+  -webkit-user-drag: none; /* For Safari */
+  user-select: none;
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For Internet Explorer/Edge */
+}
 
-  .photo:hover {
-    cursor: pointer;
-  }
-  
-  .photo img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    user-drag: none;
-    -webkit-user-drag: none; /* For Safari */
-    user-select: none;
-    -webkit-user-select: none; /* For Safari */
-    -moz-user-select: none; /* For Firefox */
-    -ms-user-select: none; /* For Internet Explorer/Edge */
-  }
+.photo:hover {
+  cursor: pointer;
+}
 
-  .photo:hover {
-    cursor: pointer;
-  }
-
-  @media(max-width: 768px){
-    .photo-gallery {
-      flex-direction: column;
-    }
-  }
-
-  
+.photo:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
 
 .filter-buttons {
   display: flex;

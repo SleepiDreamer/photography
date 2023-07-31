@@ -1,3 +1,10 @@
+var grid = document.querySelector('.photo-gallery');
+var msnry = new Masonry( grid, {
+  itemSelector: '.photo',
+  columnWidth: '.photo',
+  percentPosition: true
+});
+
 
 
 // Get all the images on the page

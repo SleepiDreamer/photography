@@ -9,8 +9,11 @@
         <link rel="stylesheet" href="style.css">
         <link rel="shortcut icon" type="image/png" href="favicon.png">
         <title>Remi Adriaensen photography</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
     </head>
     <body>
+    
         <h1 class="title">Remi Adriaensen photography</h1>
         <div class="filter-buttons">
             <button class="filter-button" data-filter="all">All</button>
@@ -21,149 +24,143 @@
           </div>
         <div class="container">
             <div class="photo-gallery">
-                <div class="column"> <!-- COLUMN 1 -->
-                    <div class="photo">
-                        <img src="preview/cinematic tree.jpg" alt="" class="cinematic landscape">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/blur 1.jpg" alt="" class="cinematic">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/cinematic coat.jpg" alt="" class="cinematic">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait mateo 1.jpg" alt="" class="portrait">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/cinematic shop.jpg" alt="" class="cinematic">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/cinematic roma airport.jpg" alt="" class="cinematic">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/blur 2.jpg" alt="" class="cinematic">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/concert julius 1.jpg" alt="" class="portrait concert">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/moon.jpg" alt="" class="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/cinematic zaventem.jpg" alt="" class="cinematic">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/bike mateo 1.jpg" alt="" class="portrait">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/ostia post 2.jpg" alt="" class="landscape">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait vic 4.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait self 2.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/blossom.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/cinematic stop light.jpg" alt="">
-                    </div>
+                <div class="photo">
+                    <img src="preview/cinematic tree.jpg" alt="" class="cinematic landscape">
                 </div>
-                <div class="column"> <!-- COLUMN 2 -->
-                    <div class="photo">
-                            <img src="preview/cinematic pillars.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/ostia sunset 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait vic 2.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/park bridge 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/park leaves.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait stranger 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/train sunset 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/ostia moon 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/museum.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/train sunset 2.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/concert vic 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait zita 4.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait tiziana phone.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/cinematic mirror.jpg" alt="">
-                    </div>
+                <div class="photo">
+                    <img src="preview/blur 1.jpg" alt="" class="cinematic">
                 </div>
-                <div class="column"> <!-- COLUMN 3 -->
-                    <div class="photo">
-                        <img src="preview/long exposure 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait zara 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/concert julius 7.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/cinematic subway.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait zita 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait vic 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/park tree.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/ostia sunset 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/park bird.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/lightning 2.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/plane 1.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/portrait jasper 2.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/park reflection.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/concert julius 2.jpg" alt="">
-                    </div>
-                    <div class="photo">
-                        <img src="preview/ostia post 1.jpg" alt="">
-                    </div>
-                    <div id="image-container"></div>
-                    <script src="script.js"></script>
+                <div class="photo">
+                    <img src="preview/cinematic coat.jpg" alt="" class="cinematic">
                 </div>
+                <div class="photo">
+                    <img src="preview/portrait mateo 1.jpg" alt="" class="portrait">
+                </div>
+                <div class="photo">
+                    <img src="preview/cinematic shop.jpg" alt="" class="cinematic">
+                </div>
+                <div class="photo">
+                    <img src="preview/cinematic roma airport.jpg" alt="" class="cinematic">
+                </div>
+                <div class="photo">
+                    <img src="preview/blur 2.jpg" alt="" class="cinematic">
+                </div>
+                <div class="photo">
+                    <img src="preview/concert julius 1.jpg" alt="" class="portrait concert">
+                </div>
+                <div class="photo">
+                    <img src="preview/moon.jpg" alt="" class="">
+                </div>
+                <div class="photo">
+                    <img src="preview/cinematic zaventem.jpg" alt="" class="cinematic">
+                </div>
+                <div class="photo">
+                    <img src="preview/bike mateo 1.jpg" alt="" class="portrait">
+                </div>
+                <div class="photo">
+                    <img src="preview/ostia post 2.jpg" alt="" class="landscape">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait vic 4.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait self 2.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/blossom.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/cinematic stop light.jpg" alt="">
+                </div>
+                <div class="photo">
+                        <img src="preview/cinematic pillars.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/ostia sunset 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait vic 2.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/park bridge 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/park leaves.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait stranger 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/train sunset 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/ostia moon 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/museum.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/train sunset 2.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/concert vic 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait zita 4.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait tiziana phone.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/cinematic mirror.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/long exposure 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait zara 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/concert julius 7.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/cinematic subway.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait zita 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait vic 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/park tree.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/ostia sunset 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/park bird.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/lightning 2.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/plane 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/portrait jasper 2.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/park reflection.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/concert julius 2.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="preview/ostia post 1.jpg" alt="">
+                </div>
+                <div id="image-container"></div>
+                <script src="script.js"></script>
             </div>
         </div>
     </body>
