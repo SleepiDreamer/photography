@@ -58,10 +58,10 @@ for file in filelist:
         #using opencv to read the image, downsample it to 50% resolution
         img = cv2.imread("original/" + file)
         modal = resize_image(img, 1920)
-        preview = resize_image(img, 1000)
+        preview = resize_image(img, 1024)
 
         modal = compress_image(modal, 800000, 3, 60)
-        preview = compress_image(preview, 50000, 3, 25)
+        preview = compress_image(preview, 150000, 3, 25)
         cv2.imwrite("modal/" + file, modal)
         cv2.imwrite("preview/" + file, preview)
         n += 1
