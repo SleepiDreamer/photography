@@ -51,8 +51,8 @@ $(window).on('load', function(){
     $('#loading-screen').hide();
   });
   $(window).resize(debounce(layoutImages, 100));
+  $(window).on('orientationchange', debounce(layoutImages, 100));
 });
-
 
 
 
