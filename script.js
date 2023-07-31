@@ -5,6 +5,10 @@ function layoutImages(){
   var verticalGap = horizontalGap;
   var containerWidth = gallery.width();
   var columncount = 3; // or any other number of columns you want to display
+  if (screen.width <= 767) {
+    columncount = 1; // set number of columns to 1 for mobile devices
+    verticalGap = 15
+  }
   var fixedwidth = containerWidth / columncount + horizontalGap;
   columns = [];
 
@@ -17,10 +21,11 @@ function layoutImages(){
             index = columns.indexOf(min), // find column number with the min height
             x = index*fixedwidth; // calculate horizontal position of current image based on column it belongs
 
-      columns[index] += image.height + verticalGap; //calculate new height of column (+1 for 1px vertical margin)
+      columns[index] += image.height + verticalGap; //calculate new height of column
       $(image).css({left:x, top:min}).delay(i*200).animate({opacity:1},100); // assign new position to image and show it
   });
 }
+
 
 function debounce(func, wait) {
   var timeout;
