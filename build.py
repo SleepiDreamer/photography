@@ -48,18 +48,24 @@ def resize_image(img, longest_edge):
     return resized_img
 
 n = 0
+fastmode = input("Fast mode? (y/n): ")
+fastmode = fastmode == "y"
 for file in filelist:
-    #using opencv to read the image, downsample it to 50% resolution
-    img = cv2.imread("original/" + file)
-    modal = resize_image(img, 1920)
-    preview = resize_image(img, 1000)
+    if fastmode and file in os.listdir("modal"):
+        n += 1
+        print(str(n) + "/" + str(len(filelist)) + " skipped " + file)
+    else:
+        #using opencv to read the image, downsample it to 50% resolution
+        img = cv2.imread("original/" + file)
+        modal = resize_image(img, 1920)
+        preview = resize_image(img, 1000)
 
-    modal = compress_image(modal, 800000, 3, 60)
-    preview = compress_image(preview, 50000, 3, 25)
-    cv2.imwrite("modal/" + file, modal)
-    cv2.imwrite("preview/" + file, preview)
-    n += 1
-    print(str(n) + "/" + str(len(filelist)) + " compressed " + file)
+        modal = compress_image(modal, 800000, 3, 60)
+        preview = compress_image(preview, 50000, 3, 25)
+        cv2.imwrite("modal/" + file, modal)
+        cv2.imwrite("preview/" + file, preview)
+        n += 1
+        print(str(n) + "/" + str(len(filelist)) + " compressed " + file)
 
 
 # n = 0

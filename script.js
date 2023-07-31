@@ -61,3 +61,24 @@ window.addEventListener("load", function() {
     photos[i].style.opacity = "1";
   }
 });
+
+
+
+
+
+const filterButtons = document.querySelectorAll('.filter-button');
+const photos = document.querySelectorAll('.photo');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.filter;
+    photos.forEach(photo => {
+      const img = photo.querySelector('img')
+      if (filter == 'all' || img.classList.contains(filter)) {
+        photo.style.display = 'block';
+      } else {
+        photo.style.display = 'none';
+      }
+    });
+  });
+});
