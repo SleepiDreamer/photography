@@ -1,4 +1,4 @@
-function layoutImages(){
+function layoutImages(callback){
   gallery = $('#gallery'), // cache a reference to our container
   imagelist = $('#gallery img:visible'); // cache a reference to our image list
   var horizontalGap = 0.01 * screen.width;
@@ -22,7 +22,13 @@ function layoutImages(){
             x = index*fixedwidth; // calculate horizontal position of current image based on column it belongs
 
       columns[index] += image.height + verticalGap; //calculate new height of column
-      $(image).css({left:x, top:min}).delay(i*200).animate({opacity:1},100); // assign new position to image and show it
+      $(image).css({left:x, top:min}).delay(i*1).animate({opacity:1},100); // assign new position to image and show it
+      $(image).css({left:x, top:min}).delay(i*1).animate({opacity:1},100, function() {
+        // call the callback function after the animation is complete
+        if (i === imagelist.length - 1) {
+          callback();
+        }
+      });
   });
 }
 
@@ -40,13 +46,13 @@ function debounce(func, wait) {
 }
 
 $(window).on('load', function(){
-  layoutImages();
+  layoutImages(function() {
+    // hide the loading screen when the images have finished loading and the layout is complete
+    $('#loading-screen').hide();
+    console.log("yes");
+  });
   $(window).resize(debounce(layoutImages, 100));
 });
-
-
-
-
 
 
 
