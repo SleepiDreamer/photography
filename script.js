@@ -57,12 +57,17 @@ $(window).on('load', function(){
 
 
 
+
+
 // Get all the images on the page
 var images = document.querySelectorAll("img");
 
 // Loop through each image and add a click event listener
 for (var i = 0; i < images.length; i++) {
   images[i].addEventListener("click", function() {
+    // Find the index of the clicked image
+    var index = Array.prototype.indexOf.call(images, this);
+
     // Create a new modal element
     var modal = document.createElement("div");
     modal.classList.add("modal");
@@ -72,23 +77,93 @@ for (var i = 0; i < images.length; i++) {
     modalImg.src = this.src.replace("/preview/", "/modal/");
     modal.appendChild(modalImg);
 
+    if (screen.width >= 767) {
+      // Create left arrow button
+      var leftButton = document.createElement("div");
+      leftButton.classList.add("modal-arrow-button", "modal-arrow-left");
+      leftButton.innerHTML = "&#10094;";
+      modal.appendChild(leftButton);
+
+      // Create right arrow button
+      var rightButton = document.createElement("div");
+      rightButton.classList.add("modal-arrow-button", "modal-arrow-right");
+      rightButton.innerHTML = "&#10095;";
+      modal.appendChild(rightButton);
+    }
+
+    // Create close button
+    var closeButton = document.createElement("div");
+    closeButton.classList.add("modal-close-button");
+    closeButton.innerHTML = "&#10005;";
+    modal.appendChild(closeButton);
+
     // Add the modal to the page
     document.body.appendChild(modal);
 
-    // Add a click event listener to the modal to close it
-    modal.addEventListener("click", function() {
-      modal.classList.remove("show");
-      setTimeout(function() {
-        modal.remove();
-      }, 300);
+    // Add a click event listener to the close button to close the modal
+    closeButton.addEventListener("click", function() {
+      closeModal();
+    });
+
+    if (screen.width >= 767) {
+      // Add a click event listener to the left arrow button to show the previous image
+      leftButton.addEventListener("click", function() {
+        var prevImage = images[index - 1];
+        if (prevImage) {
+          modalImg.src = prevImage.src.replace("/preview/", "/modal/");
+          index--;
+        }
+      });
+
+      // Add a click event listener to the right arrow button to show the next image
+      rightButton.addEventListener("click", function() {
+        var nextImage = images[index + 1];
+        if (nextImage) {
+          modalImg.src = nextImage.src.replace("/preview/", "/modal/");
+          index++;
+        }
+      });
+    }
+
+    // Add a keydown event listener to the document to close the modal when the Escape key is pressed
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeModal();
+      } else if (event.key === "ArrowLeft") {
+        var prevImage = images[index - 1];
+        if (prevImage) {
+          modalImg.src = prevImage.src.replace("/preview/", "/modal/");
+          index--;
+        }
+      } else if (event.key === "ArrowRight") {
+        var nextImage = images[index + 1];
+        if (nextImage) {
+          modalImg.src = nextImage.src.replace("/preview/", "/modal/");
+          index++;
+        }
+      }
     });
 
     // Show the modal with an animation
     setTimeout(function() {
       modal.classList.add("show");
     }, 10);
+
+    // Function to close the modal
+    function closeModal() {
+      modal.classList.remove("show");
+      setTimeout(function() {
+        modal.remove();
+      }, 300);
+    }
   });
 }
+
+
+
+
+
+
 
 // Preload images
 var previewImages = document.querySelectorAll("img");
