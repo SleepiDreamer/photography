@@ -123,6 +123,7 @@ transform: scale(1);
   width: 33.33%;
   border-radius: 8px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   display: inline-block;
   overflow: hidden;
   transform: scale(1);
@@ -131,11 +132,13 @@ transform: scale(1);
   transition: transform 0.25 ease, position 0.25s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
-#gallery img:hover {
-  transform: scale(1.03);
-  overflow: visible;
-  box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
-  filter:brightness(1.075)
+@media (min-width: 767px) {
+  #gallery img:hover {
+    transform: scale(1.03);
+    overflow: visible;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
+    filter:brightness(1.075)
+  }
 }
 
 @media (max-width: 767px) {
