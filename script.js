@@ -142,60 +142,61 @@ filterButtons.forEach(button => {
 
 
 
+if (false) {
+  if (screen.width <= 767) {
+    $(document).ready(function() {
+      var $window = $(window);
+      var $images = $('#gallery img');
+      var windowHeight = $window.height();
+      var windowWidth = $window.width();
 
-if (screen.width <= 767) {
-  $(document).ready(function() {
-    var $window = $(window);
-    var $images = $('#gallery img');
-    var windowHeight = $window.height();
-    var windowWidth = $window.width();
+      function updateCarousel() {
+        var scrollTop = $window.scrollTop();
+        var center = scrollTop + windowHeight / 2;
 
-    function updateCarousel() {
-      var scrollTop = $window.scrollTop();
-      var center = scrollTop + windowHeight / 2;
+        $images.each(function() {
+          var $image = $(this);
+          var imageTop = $image.offset().top;
+          var imageHeight = $image.height();
+          var distanceTop = Math.abs(center - imageTop);
+          if (distanceTop < windowHeight) {
+            var distanceCentre = Math.abs(center - (imageTop + imageHeight / 2));
+            var distanceBottom = Math.abs(center - (imageTop + imageHeight));
+            if (center - (imageTop + imageHeight) < 0) {
+              var distance = Math.min(distanceTop, distanceCentre, distanceBottom);
+              var maxDistance = windowHeight * 1.5;
+              var scale = ((1.5 - (distance / maxDistance)) / 1.5) + 0.1;
+              var opacity = ((1.5 - (distance / maxDistance)) / 1.5) + 0.1;
 
-      $images.each(function() {
-        var $image = $(this);
-        var imageTop = $image.offset().top;
-        var imageHeight = $image.height();
-        var distanceTop = Math.abs(center - imageTop);
-        if (distanceTop < windowHeight) {
-          var distanceCentre = Math.abs(center - (imageTop + imageHeight / 2));
-          var distanceBottom = Math.abs(center - (imageTop + imageHeight));
-          if (center - (imageTop + imageHeight) < 0) {
-            var distance = Math.min(distanceTop, distanceCentre, distanceBottom);
-            var maxDistance = windowHeight * 1.5;
-            var scale = ((1.5 - (distance / maxDistance)) / 1.5) + 0.1;
-            var opacity = ((1.5 - (distance / maxDistance)) / 1.5) + 0.1;
+              if (scale < 0.8) {
+                scale = 0.8;
+              }
+              if (scale > 1.0) {
+                scale = 1.0;
+              }
+              if (opacity < 0.8) {
+                opacity = 0.8;
+              }
 
-            if (scale < 0.8) {
-              scale = 0.8;
+              $image.css('transform', 'scale(' + scale + ')');
+              $image.css('opacity', opacity);
             }
-            if (scale > 1.0) {
-              scale = 1.0;
-            }
-            if (opacity < 0.8) {
-              opacity = 0.8;
-            }
-
-            $image.css('transform', 'scale(' + scale + ')');
-            $image.css('opacity', opacity);
           }
-        }
-      });
-    }
-
-    $window.on('scroll', updateCarousel);
-
-    $('.filter-button').on('click', function() {
-      var filter = $(this).data('filter');
-      $('#gallery img').hide();
-      if (filter === 'all') {
-        $('#gallery img').show();
-      } else {
-        $('#gallery img.' + filter).show();
+        });
       }
-      updateCarousel();
+
+      $window.on('scroll', updateCarousel);
+
+      $('.filter-button').on('click', function() {
+        var filter = $(this).data('filter');
+        $('#gallery img').hide();
+        if (filter === 'all') {
+          $('#gallery img').show();
+        } else {
+          $('#gallery img.' + filter).show();
+        }
+        updateCarousel();
+      });
     });
-  });
+  }
 }
