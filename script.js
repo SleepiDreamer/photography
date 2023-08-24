@@ -1,6 +1,6 @@
 function layoutImages(callback){
-  gallery = $('#gallery'), // cache a reference to our container
-  imagelist = $('#gallery img:visible'); // cache a reference to our image list
+  gallery = $('#gallery'); // cache a reference to our container
+  imagelist = $('#gallery img'); // cache a reference to our image list
   var horizontalGap = 0.01 * screen.width;
   var verticalGap = horizontalGap;
   var containerWidth = gallery.width();
@@ -17,18 +17,22 @@ function layoutImages(callback){
   }
 
   imagelist.each(function(i,image){
+      if ($(image).is(':hidden')) { // check if the image is hidden
+        $(image).addClass('bottom'); // add a class to the hidden image
+        $(image).css({top: gallery.height()}); // set the top property of the hidden image to the height of the container element
+      } else {
         var min = Math.min.apply(null, columns), // find height of shortest column
             index = columns.indexOf(min), // find column number with the min height
             x = index*fixedwidth; // calculate horizontal position of current image based on column it belongs
 
-      columns[index] += image.height + verticalGap; //calculate new height of column
-      $(image).css({left:x, top:min}).delay(0).animate({opacity:1},100); // assign new position to image and show it
-      $(image).css({left:x, top:min}).delay(0).animate({opacity:1},100, function() {
-        // call the callback function after the animation is complete
-        if (i === imagelist.length - 1) {
-          callback();
-        }
-      });
+        columns[index] += image.height + verticalGap; //calculate new height of column
+        $(image).css({left:x, top:min}).delay(0).animate({},100, function() {
+          // call the callback function after the animation is complete
+          if (i === imagelist.length - 1) {
+            callback();
+          }
+        }); // assign new position to image and show it
+      }
   });
 }
 
@@ -45,6 +49,9 @@ function debounce(func, wait) {
   };
 }
 
+
+
+
 $(window).on('load', function(){
   layoutImages(function() {
     // hide the loading screen when the images have finished loading and the layout is complete
@@ -54,10 +61,9 @@ $(window).on('load', function(){
   $(window).on('orientationchange', debounce(layoutImages, 100));
 });
 
-
-
-
-
+window.addEventListener("deviceorientation", function(event) {
+  layoutImages();
+}, true);
 
 // Get all the images on the page
 var images = document.querySelectorAll("img");
@@ -91,6 +97,7 @@ for (var i = 0; i < images.length; i++) {
       modal.appendChild(rightButton);
     }
 
+    
     // Create close button
     var closeButton = document.createElement("div");
     closeButton.classList.add("modal-close-button");
@@ -186,17 +193,6 @@ new Promise((resolve, reject) => {
 for (var i = 0; i < modalImageUrls.length; i++) {
   preloadImage(modalImageUrls[i]);
 }
-
-window.addEventListener("load", function() {
-  var photos = document.querySelectorAll(".photo");
-  for (var i = 0; i < photos.length; i++) {
-    photos[i].style.opacity = "1";
-  }
-});
-
-
-
-
 
 const filterButtons = document.querySelectorAll('.filter-button');
 const photos = document.querySelectorAll('#gallery img');

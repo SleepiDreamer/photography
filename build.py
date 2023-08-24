@@ -51,10 +51,7 @@ n = 0
 fastmode = input("Fast mode? (y/n): ")
 fastmode = fastmode == "y"
 for file in filelist:
-    if fastmode and file in os.listdir("modal"):
-        n += 1
-        print(str(n) + "/" + str(len(filelist)) + " skipped " + file)
-    else:
+    if not (fastmode and file in os.listdir("modal")):
         #using opencv to read the image, downsample it to 50% resolution
         img = cv2.imread("original/" + file)
         modal = resize_image(img, 1920)
@@ -64,8 +61,8 @@ for file in filelist:
         preview = compress_image(preview, 150000, 3, 25)
         cv2.imwrite("modal/" + file, modal)
         cv2.imwrite("preview/" + file, preview)
-        n += 1
         print(str(n) + "/" + str(len(filelist)) + " compressed " + file)
+    n += 1
 
 
 # n = 0

@@ -156,9 +156,25 @@ user-select: none;
 #gallery{
   position:absolute;
   margin-top: 20px;
-  width:70%;
-  left:15%;
 }
+
+@media (min-width: 767px) {
+  #gallery {
+    width: 70%;
+    max-width: 1224px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  #gallery {
+    width: 90%;
+    left: 5%;
+  }
+}
+
+
 #gallery img{
   position:absolute;
   -ms-transition:all 0.25s ease;
@@ -181,7 +197,6 @@ user-select: none;
 @media (min-width: 767px) {
   #gallery img:hover {
     transform: scale(1.03);
-    overflow: visible;
     box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
     filter:brightness(1.075)
   }
