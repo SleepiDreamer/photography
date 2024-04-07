@@ -14,7 +14,7 @@ def compress_image(img, target_size, precision=3, min_quality=60):
     _, img_encoded = cv2.imencode(".jpg", img, encode_param)
 
     # Compress the image until its size is less than the target size
-    while len(img_encoded) > target_size:
+    while len(img_encoded) > target_size: # target size in bytes
         # Reduce the JPEG quality by precision%
         encode_param[1] -= precision
         _, img_encoded = cv2.imencode(".jpg", img, encode_param)
@@ -43,7 +43,26 @@ def resize_image(img, longest_edge):
         scale = longest_edge / width
 
     # Resize the image using the scale factor
-    resized_img = cv2.resize(img, (int(width * scale), int(height * scale)))
+    resized_img = cv2.resize(img, (int(width * scale), int(height * scale)), interpolation=cv2.INTER_AREA)
+
+    return resized_img
+
+def resize_image_shortest_edge(img, shortest_edge):
+    # Get the dimensions of the image
+    height, width = img.shape[:2]
+
+    # If the image is already smaller than shortest_edge on both sides, return the original image
+    if height <= shortest_edge and width <= shortest_edge:
+        return img
+
+    # Calculate the scale factor to resize the image
+    if height < width:
+        scale = shortest_edge / height
+    else:
+        scale = shortest_edge / width
+
+    # Resize the image using the scale factor
+    resized_img = cv2.resize(img, (int(width * scale), int(height * scale)), interpolation=cv2.INTER_AREA)
 
     return resized_img
 
@@ -55,7 +74,8 @@ for file in filelist:
         #using opencv to read the image, downsample it to 50% resolution
         img = cv2.imread("original/" + file)
         modal = resize_image(img, 1920)
-        preview = resize_image(img, 1024)
+        preview = resize_image_shortest_edge(img, 600)
+        # how to resize on shortest edge instead:
 
         modal = compress_image(modal, 800000, 3, 60)
         preview = compress_image(preview, 150000, 3, 25)

@@ -9,18 +9,21 @@ function layoutImages(callback){
     columncount = 1; // set number of columns to 1 for mobile devices
     verticalGap = 15;
   }
-  var fixedwidth = containerWidth / columncount + horizontalGap;
+  var fixedwidth = containerWidth / columncount + horizontalGap - horizontalGap/columncount; // calculate the width of each column
   columns = [];
 
   for (var i =0;i<columncount;i++){ // initialize columns (0 height for each)
       columns.push(0);
   }
-
+  
   imagelist.each(function(i,image){
-      if ($(image).is(':hidden')) { // check if the image is hidden
+      if ($(image).is(':hidden')) // check if the image is hidden
+      { 
         $(image).addClass('bottom'); // add a class to the hidden image
         $(image).css({top: gallery.height()}); // set the top property of the hidden image to the height of the container element
-      } else {
+      } 
+      else 
+      {
         var min = Math.min.apply(null, columns), // find height of shortest column
             index = columns.indexOf(min), // find column number with the min height
             x = index*fixedwidth; // calculate horizontal position of current image based on column it belongs
@@ -57,6 +60,7 @@ $(window).on('load', function(){
     // hide the loading screen when the images have finished loading and the layout is complete
     $('#loading-screen').hide();
   });
+
   $(window).resize(debounce(layoutImages, 100));
   $(window).on('orientationchange', debounce(layoutImages, 100));
 });
@@ -191,7 +195,7 @@ new Promise((resolve, reject) => {
 })
 
 for (var i = 0; i < modalImageUrls.length; i++) {
-  preloadImage(modalImageUrls[i]);
+  // preloadImage(modalImageUrls[i]);
 }
 
 const filterButtons = document.querySelectorAll('.filter-button');
