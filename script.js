@@ -9,7 +9,7 @@ function layoutImages(callback){
     columncount = 1; // set number of columns to 1 for mobile devices
     verticalGap = 15;
   }
-  var fixedwidth = containerWidth / columncount + horizontalGap - horizontalGap/columncount; // calculate the width of each column
+  var fixedwidth = containerWidth / columncount + horizontalGap;
   columns = [];
 
   for (var i =0;i<columncount;i++){ // initialize columns (0 height for each)
@@ -27,6 +27,7 @@ function layoutImages(callback){
         var min = Math.min.apply(null, columns), // find height of shortest column
             index = columns.indexOf(min), // find column number with the min height
             x = index*fixedwidth; // calculate horizontal position of current image based on column it belongs
+            x += (containerWidth - columncount * fixedwidth) / columncount; // offset to the left to recenter the images
 
         columns[index] += image.height + verticalGap; //calculate new height of column
         $(image).css({left:x, top:min}).delay(0).animate({},100, function() {
